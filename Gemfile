@@ -62,5 +62,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-gem "cssbundling-rails", "~> 1.3.3"
+gem "cssbundling-rails", "~> 1.4.1"
 gem "bootstrap", "~> 5.3.0"
