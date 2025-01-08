@@ -1,0 +1,114 @@
+<h1>Shark Store</h1>
+
+<%= link_to "New product", new_product_path, class: 'btn-new-product' if authenticated? %>
+<%= link_to "Login", new_session_path, class: 'btn' unless authenticated? %>
+
+<div id="products">
+  <% @products.each do |product| %>
+    <div class="product-item">
+      <%= link_to product.name, product %>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  /* Make Shark Store title bold and red with shimmering effect */
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ff0000; /* Red text for the title */
+    font-family: 'Arial', sans-serif;
+    font-size: 4rem; /* Bigger font size for more impact */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Make the title uppercase */
+    letter-spacing: 5px; /* Add spacing between letters */
+    background: linear-gradient(45deg, #ff0000, #ff4d4d); /* Red gradient (light to dark red) */
+    -webkit-background-clip: text;
+    color: transparent; /* Ensure the text is transparent to reveal gradient */
+    text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7); /* Stronger and more prominent shadow */
+    animation: shine 1.5s infinite alternate; /* Add a shimmering animation effect */
+  }
+
+  /* Shimmer animation effect for the title */
+  @keyframes shine {
+    0% {
+      text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7), 0 0 25px #fff, 0 0 5px #ff0000;
+    }
+    100% {
+      text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7), 0 0 25px #fff, 0 0 5px #ff4d4d;
+    }
+  }
+
+  /* Enhanced background styling for the entire page with light blue background */
+  body {
+    background: linear-gradient(135deg,rgb(95, 220, 255),rgb(95, 220, 255)); /* Light blue gradient background */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #333333; /* Dark text color for better contrast */
+  }
+
+  /* Styling for the product list */
+  #products {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8); /* Light background for the product list */
+    padding: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for a floating effect */
+  }
+
+  /* Styling for individual products */
+  #products .product-item {
+    display: inline-block;
+    margin: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #ffffff;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Hover effect for products */
+  #products .product-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Button styling for 'New product' and 'Login' */
+  .btn, .btn-new-product {
+    display: inline-block;
+    margin: 15px;
+    text-align: center;
+    background-color: #6a1b9a; /* Purple background */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Highlight the 'New product' button */
+  .btn-new-product {
+    background-color: #FF8A65; /* Warm orange color for 'New Product' button */
+  }
+
+  /* Hover effect for buttons */
+  .btn:hover, .btn-new-product:hover {
+    background-color: #5d4037; /* Slightly lighter brown when hovered */
+    transform: scale(1.05);
+  }
+
+  /* Specific hover effect for New Product button */
+  .btn-new-product:hover {
+    background-color: #FF7043; /* Lighter orange when hovered */
+  }
+</style>
+

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <style>
+    /* General Reset and Body Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color:rgb(95, 220, 255); /* New background color */
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Center the product section in the page */
+    .product {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh; /* Ensures the page takes up at least the full viewport height */
+      text-align: center; /* Optional: centers text inside the product-info section */
+      padding: 20px;
+    }
+
+    /* Container for product-info */
+    .product-info {
+      max-width: 900px; /* Limits the width of the content */
+      width: 100%;
+      background-color: #fff; /* White background for content box */
+      padding: 30px;
+      margin-top: 20px;
+      border-radius: 8px; /* Rounded corners */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow around the content */
+    }
+
+    /* Heading Styling */
+    .product-info h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    /* Product Description Styling */
+    .product-info p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    /* Product Image Styling */
+    .product img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Links and Buttons Styling */
+    .product-info a, .product-info button {
+      display: inline-block;
+      padding: 12px 25px;
+      margin-top: 10px;
+      text-decoration: none;
+      color: white;
+      background-color: #007bff; /* Blue background */
+      border-radius: 5px;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-info a:hover, .product-info button:hover {
+      background-color: #0056b3; /* Darker blue when hovering */
+    }
+
+    .product-info button {
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Back Link Styling */
+    p a {
+      font-size: 1.2rem;
+      color: #007bff;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+
+    p a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Back Link -->
+  <p><%= link_to "Back", products_path %></p>
+
+  <!-- Product Section -->
+  <section class="product">
+    <%= image_tag @product.featured_image if @product.featured_image.attached? %>
+
+    <section class="product-info">
+      <% cache @product do %>
+        <h1><%= @product.name %></h1>
+        <p><%= @product.description %></p>
+      <% end %>
+
+      <!-- Inventory Rendering -->
+      <%= render "inventory", product: @product %>
+
+      <!-- Authenticated User Options -->
+      <% if authenticated? %>
+        <%= link_to "Edit", edit_product_path(@product) %>
+        <%= button_to "Delete", @product, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+      <% end %>
+    </section>
+  </section>
+
+</body>
+</html>
+

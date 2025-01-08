@@ -1,0 +1,135 @@
+<div class="container mt-5">
+
+  <!-- Tiêu đề -->
+  <h1 class="text-center mt-4 mb-4 fw-bold display-5">Product Form</h1>
+
+  <!-- Form Container -->
+  <div class="form-container">
+    <%= form_with(model: product, local: true) do |form| %>
+      
+      <!-- Hiển thị lỗi nếu có -->
+      <% if product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+          <ul>
+            <% product.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- Name Field -->
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <!-- Price Field -->
+      <div class="mb-3">
+        <%= form.label :price, class: "form-label" %>
+        <%= form.number_field :price, class: "form-control" %>
+      </div>
+
+      <!-- Description Field -->
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.rich_text_area :description, class: "form-control" %>
+      </div>
+
+      <!-- Featured Image Field -->
+      <div class="mb-3">
+        <%= form.label :featured_image, class: "form-label" %>
+        <%= form.file_field :featured_image, accept: "image/*", class: "form-control" %>
+      </div>
+
+      <!-- Inventory Count Field -->
+      <div class="mb-3">
+        <%= form.label :inventory_count, class: "form-label" %>
+        <%= form.number_field :inventory_count, class: "form-control" %>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <%= form.submit "Cập Nhật", class: "btn btn-primary btn-submit" %>
+      </div>
+      
+    <% end %>
+  </div>
+
+</div>
+
+<style>
+  /* General body style with a soft blue background */
+  body {
+    background-color: #e6f7ff; /* Soft blue background */
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Darker text for readability */
+  }
+
+  /* Container for the form with a white background */
+  .form-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for professional look */
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Submit button customization */
+  .btn-submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .btn-submit:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+
+  /* Error message styling */
+  #error_explanation {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  /* Form field label customization */
+  .form-label {
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Input field style */
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .form-control:focus {
+    border-color: #80bdff; /* Focused state with light blue border */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 20px;
+    }
+
+    .btn-submit {
+      font-size: 1.1rem;
+    }
+  }
+</style>
